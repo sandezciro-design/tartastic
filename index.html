@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Tartastic Yani</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
@@ -12,7 +13,6 @@ body{
 }
 
 /* ===== FONDO ANIMADO ===== */
-
 .fondo-animado{
   position:fixed;
   top:0;
@@ -36,7 +36,6 @@ body{
 }
 
 /* ===== MENU ===== */
-
 nav{
   background:#f4e3c3;
   padding:15px;
@@ -60,7 +59,6 @@ nav button:hover{
 }
 
 /* ===== SECCIONES ===== */
-
 .seccion{
   display:none;
   padding:40px;
@@ -72,7 +70,6 @@ nav button:hover{
 }
 
 /* ===== TARJETAS ===== */
-
 .producto{
   background:white;
   padding:15px;
@@ -82,7 +79,6 @@ nav button:hover{
 }
 
 /* ===== BOTON PEDIR ===== */
-
 .pedir{
   margin-top:10px;
   padding:8px 12px;
@@ -95,7 +91,6 @@ nav button:hover{
 }
 
 /* ===== GRID PRODUCTOS ===== */
-
 .grid-productos{
   display:grid;
   grid-template-columns: repeat(4, 1fr);
@@ -103,6 +98,55 @@ nav button:hover{
   justify-items:center;
   max-width:1200px;
   margin:auto;
+}
+
+/* ===== RESPONSIVE SOLO CELULAR ===== */
+@media (max-width: 768px) {
+  nav button {
+    padding: 15px 25px;   /* botones más grandes en celular */
+    font-size: 18px;
+  }
+
+  .pedir {
+    padding: 12px 18px;   /* agranda botón pedir en celular */
+    font-size: 16px;
+  }
+
+  .grid-productos {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en celular */
+  }
+
+  .producto {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .seccion {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav button {
+    width: 100%;  /* botones ocupan toda la fila */
+    margin: 8px 0;
+  }
+
+  .grid-productos {
+    grid-template-columns: 1fr; /* 1 columna en pantallas muy chicas */
+  }
+
+  .producto {
+    width: 100%;
+  }
 }
 </style>
 </head>
@@ -128,16 +172,11 @@ nav button:hover{
 
 <!-- ===== INICIO ===== -->
 <div id="inicio" class="seccion activa">
-
   <h1 style="font-size:50px;">🍰 Tartastic Yani</h1>
   <p>Tortas caseras en Rosario 💖</p>
-
   <hr style="margin:30px 0;">
-
   <h2>Nuestras Tortas</h2>
-
   <div id="inicioProductos"></div>
-
 </div>
 
 <!-- ===== PRODUCTOS ===== -->
@@ -162,73 +201,35 @@ nav button:hover{
 </div>
 
 <script>
-
-/* 🔥🔥🔥 SOLO EDITÁ ESTA LISTA 🔥🔥🔥 */
-
+/* 🔥 PRODUCTOS 🔥 */
 const productos = [
-
-  {
-    nombre: "Torta de Chocolate",
-    descripcion: "Bizcochuelo húmedo con dulce de leche",
-    precio: "$8500"
-  },
-
-  {
-    nombre: "Tarta de Frutilla",
-    descripcion: "Crema pastelera con frutillas frescas",
-    precio: "$7200"
-  },
-
-  {
-    nombre: "Cheesecake",
-    descripcion: "Suave y cremoso con base de galleta",
-    precio: "$9000"
-  },
-
-  {
-    nombre: "Torta Oreo",
-    descripcion: "Chocolate con crema Oreo",
-    precio: "$9200"
-  },
-
-  {
-    nombre: "Lemon Pie",
-    descripcion: "Ácido y dulce perfecto",
-    precio: "$7800"
-  }
-
+  { nombre: "Torta de Chocolate", descripcion: "Bizcochuelo húmedo con dulce de leche", precio: "$8500" },
+  { nombre: "Tarta de Frutilla", descripcion: "Crema pastelera con frutillas frescas", precio: "$7200" },
+  { nombre: "Cheesecake", descripcion: "Suave y cremoso con base de galleta", precio: "$9000" },
+  { nombre: "Torta Oreo", descripcion: "Chocolate con crema Oreo", precio: "$9200" },
+  { nombre: "Lemon Pie", descripcion: "Ácido y dulce perfecto", precio: "$7800" }
 ];
 
-/* 🔥 NO TOCAR ABAJO 🔥 */
-
+/* 🔥 FUNCIONES 🔥 */
 function mostrar(id){
-  document.querySelectorAll('.seccion')
-    .forEach(sec => sec.classList.remove('activa'));
-
-  document.getElementById(id)
-    .classList.add('activa');
+  document.querySelectorAll('.seccion').forEach(sec => sec.classList.remove('activa'));
+  document.getElementById(id).classList.add('activa');
 }
 
 const lista = document.getElementById("listaProductos");
 const listaInicio = document.getElementById("inicioProductos");
 
 productos.forEach(p => {
-
   const tarjeta = `
     <div class="producto">
       <h3>${p.nombre}</h3>
       <p>${p.descripcion}</p>
       <b>${p.precio}</b><br>
-      <button class="pedir"
-        onclick="pedir('${p.nombre}')">
-        Pedir
-      </button>
+      <button class="pedir" onclick="pedir('${p.nombre}')">Pedir</button>
     </div>
   `;
-
   lista.innerHTML += tarjeta;
   listaInicio.innerHTML += tarjeta;
-
 });
 
 function pedir(producto){
@@ -237,7 +238,6 @@ function pedir(producto){
     "_blank"
   );
 }
-
 </script>
 
 </body>

@@ -1,0 +1,12 @@
+/* ===== SOLO CELULAR ===== */
+@media (max-width: 768px) {
+  nav button {
+    padding: 15px 25px;   /* agranda los botones */
+    font-size: 18px;
+  }
+
+  .pedir {
+    padding: 12px 18px;  /* agranda el botón pedir */
+    font-size: 16px;
+  }
+}
